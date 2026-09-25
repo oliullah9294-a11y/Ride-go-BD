@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ride Go BD — MVP</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">📍🚗</div>
+      <div><b>Ride Go <span>BD</span></b><small>আপনার যাত্রা, আমাদের দায়িত্ব</small></div>
+    </div>
+    <button id="resetBtn" class="icon-btn" title="Reset">↻</button>
+  </header>
+
+  <main>
+    <section id="screen-welcome" class="screen active">
+      <div class="hero">
+        <div class="hero-logo">📍🚗</div>
+        <h1>Ride Go <span>BD</span></h1>
+        <p>চলুন, একসাথে নিরাপদ পথে...</p>
+      </div>
+      <div class="card">
+        <label>মোবাইল নম্বর</label>
+        <div class="phone"><span>+880</span><input id="phone" inputmode="numeric" maxlength="10" placeholder="1XXXXXXXXX"></div>
+        <button class="primary" onclick="show('otp')">OTP পাঠান</button>
+      </div>
+    </section>
+
+    <section id="screen-otp" class="screen">
+      <h2>OTP যাচাই</h2>
+      <p class="muted">আপনার মোবাইলে পাঠানো ৬ সংখ্যার OTP দিন।</p>
+      <input id="otp" class="big-input" inputmode="numeric" maxlength="6" placeholder="123456">
+      <button class="primary" onclick="show('role')">ভেরিফাই করুন</button>
+    </section>
+
+    <section id="screen-role" class="screen">
+      <h2>আপনি কী করতে চান?</h2>
+      <button class="role driver" onclick="setRole('driver'); show('driver')">🚗 <b>চালক (Driver)</b><small>যাত্রী খুঁজুন</small></button>
+      <button class="role passenger" onclick="setRole('passenger'); show('passenger')">👤 <b>যাত্রী (Passenger)</b><small>গাড়ি খুঁজুন</small></button>
+    </section>
+
+    <section id="screen-passenger" class="screen">
+      <div class="screen-head"><div><h2>যাত্রী হোম</h2><p class="muted">শুভেচ্ছা, Ride Go BD</p></div><span class="pill">Passenger</span></div>
+      <div class="card">
+        <label>কোথায় থেকে?</label><input id="fromP" value="মির্জারহাট বাজার">
+        <label>কোথায় যাবেন?</label><input id="toP" value="চট্টগ্রাম শহর">
+        <div class="map mock-map"><span>📍</span><i></i><b>Google Maps-ready</b></div>
+        <div class="stats"><div><small>দূরত্ব</small><strong>12.5 KM</strong></div><div><small>সময়</small><strong>32 মিনিট</strong></div></div>
+        <button class="primary" onclick="show('matches')">গাড়ি খুঁজুন</button>
+      </div>
+    </section>
+
+    <section id="screen-driver" class="screen">
+      <div class="screen-head"><div><h2>চালক হোম</h2><p class="muted">আপনি এখন Available</p></div><span class="pill green">Driver</span></div>
+      <div class="card">
+        <label>কোথা থেকে?</label><input value="মির্জারহাট বাজার">
+        <label>কোথায় যাবেন?</label><input value="চট্টগ্রাম শহর">
+        <label>যাত্রী সংখ্যা</label><input value="1" inputmode="numeric">
+        <label>চাওয়া ভাড়া</label><input id="driverFare" value="500" inputmode="numeric">
+        <button class="primary" onclick="show('driverRequests')">যাত্রী খুঁজুন</button>
+      </div>
+    </section>
+
+    <section id="screen-matches" class="screen">
+      <h2>গাড়ি পাওয়া গেছে</h2>
+      <div class="card match"><div class="avatar">🚗</div><div><b>Driver 420</b><p>৳ 500 • 12.5 KM</p></div><button onclick="show('negotiation')">ভাড়া আলোচনা</button></div>
+      <div class="card match"><div class="avatar">🚕</div><div><b>Driver 450</b><p>৳ 450 • 13.1 KM</p></div><button onclick="show('negotiation')">ভাড়া আলোচনা</button></div>
+    </section>
+
+    <section id="screen-driverRequests" class="screen">
+      <h2>যাত্রী অনুরোধ</h2>
+      <div class="card match"><div class="avatar">👤</div><div><b>শাহরিয়ার আহমেদ</b><p>মির্জারহাট → চট্টগ্রাম</p><p>প্রস্তাব: ৳ 400</p></div><button onclick="show('negotiation')">দেখুন</button></div>
+    </section>
+
+    <section id="screen-negotiation" class="screen">
+      <h2>ভাড়া আলোচনা</h2>
+      <div class="chat">
+        <div class="bubble left">চালক: ৳ 500</div>
+        <div class="bubble right">যাত্রী: ৳ 400</div>
+        <div class="bubble left">চালক: ৳ 450</div>
+      </div>
+      <div class="card">
+        <label>আপনার প্রস্তাব</label>
+        <input id="offer" value="450" inputmode="numeric">
+        <button class="primary" onclick="show('payment')">৳450 গ্রহণ করে Confirm</button>
+      </div>
+    </section>
+
+    <section id="screen-payment" class="screen">
+      <h2>Service Fee Payment</h2>
+      <div class="card">
+        <div class="row"><span>যাত্রী সার্ভিস চার্জ</span><b>৳5</b></div>
+        <div class="row"><span>চালক সার্ভিস চার্জ</span><b>৳5</b></div>
+        <div class="total"><span>মোট</span><b>৳10</b></div>
+        <p class="muted">MVP ডেমো: এখানে bKash Gateway যুক্ত করার জায়গা রাখা হয়েছে।</p>
+        <button class="primary" onclick="show('live')">Payment Successful → Trip শুরু</button>
+      </div>
+    </section>
+
+    <section id="screen-live" class="screen">
+      <div class="screen-head"><div><h2>যাত্রা চলছে</h2><p class="muted">Live location & route</p></div><span class="pill live">LIVE</span></div>
+      <div class="map live-map">
+        <div class="route"></div><div class="car">🚗</div><div class="start">●</div><div class="end">🎯</div>
+        <div class="map-label">Google Maps / GPS integration point</div>
+      </div>
+      <div class="stats"><div><small>বাকি দূরত্ব</small><strong>6.8 KM</strong></div><div><small>আনুমানিক সময়</small><strong>18 মিনিট</strong></div></div>
+      <div class="card"><div class="row"><span>চালক</span><b>Driver 420</b></div><div class="row"><span>যাত্রী</span><b>শাহরিয়ার আহমেদ</b></div></div>
+      <button class="primary" onclick="show('complete')">যাত্রা শেষ করুন</button>
+    </section>
+
+    <section id="screen-complete" class="screen">
+      <div class="success">✓</div>
+      <h2>যাত্রা সম্পন্ন</h2>
+      <p class="muted">আপনার যাত্রা সফলভাবে শেষ হয়েছে।</p>
+      <div class="card"><div class="row"><span>চূড়ান্ত ভাড়া</span><b>৳450</b></div><div class="row"><span>দূরত্ব</span><b>12.5 KM</b></div></div>
+      <button class="primary" onclick="show(role==='driver'?'driver':'passenger')">Close Trip → নতুন খুঁজুন</button>
+    </section>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
