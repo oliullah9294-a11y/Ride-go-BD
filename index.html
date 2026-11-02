@@ -1,10 +1,96 @@
 <!DOCTYPE html>
-<html>
-<body style="text-align:center; padding:50px;">
-<h1>Ride Go BD</h1>
-<h2 style="font-size:32px;">01823-965999</h2>
-<a href="tel:+8801823965999" style="background:green; color:white; padding:20px; border-radius:10px; text-decoration:none;">
-এখন কল করুন
-</a>
+<html lang="bn">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ride Go BD</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Hind Siliguri',sans-serif}
+body{background:#eef6ee;display:flex;justify-content:center}
+.phone{width:100%;max-width:420px;background:#fff;min-height:100vh;position:relative}
+.hidden{display:none}
+/* PAGE 1 - LANDING */
+.top{height:52vh;background:linear-gradient(180deg,#16a34a 0%,#0d7a36 100%);border-radius:0 0 44px 44px;padding:20px}
+.nav{display:flex;justify-content:space-between;color:#fff;font-weight:700}
+.top h1{color:#fff;text-align:center;margin-top:36px;font-size:27px;line-height:1.25}
+.top p{color:#e8ffe8;text-align:center;margin-top:8px;font-size:14px}
+.card{margin:-95px 18px 20px 18px;background:#fff;border-radius:28px;padding:26px 16px;box-shadow:0 12px 30px rgba(0,0,0,.12);z-index:2;position:relative}
+.card h2{text-align:center;font-size:21px}
+.sub{text-align:center;color:#777;font-size:13px;margin:4px 0 20px}
+.btn{width:100%;display:flex;align-items:center;gap:14px;padding:15px 14px;border-radius:18px;border:none;font-size:15px;font-weight:600;text-align:left;cursor:pointer}
+.btn-green{background:#15803d;color:#fff}
+.btn-white{background:#fff;color:#111;border:2px solid #dcfce7;margin-top:12px}
+.ic{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px}
+.bg1{background:#fff;color:#15803d}
+.bg2{background:#dcfce7;color:#15803d}
+.small{font-size:11px;font-weight:400;opacity:.9}
+
+/* PAGE 2 & 3 - OTP PAGES */
+.header{background:#15803d;color:#fff;padding:14px 18px;display:flex;align-items:center;gap:10px}
+.back{font-size:20px;cursor:pointer}
+.header h1{font-size:14px}
+.card2{margin:16px 18px;background:#f8fff8;border:1.5px solid #dcfce7;border-radius:24px;padding:20px}
+.card-top{background:#16a34a;color:#fff;text-align:center;padding:12px;border-radius:14px;font-size:18px;font-weight:700;margin-bottom:12px}
+.label-small{font-size:12px;color:#333;text-align:center;margin-bottom:14px}
+.input-box{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid #e5e7eb;border-radius:14px;padding:12px 14px;margin-bottom:12px}
+.input-box input{border:none;outline:none;width:100%;font-size:14px}
+.btn-otp{width:100%;background:#16a34a;color:#fff;border:none;padding:14px;border-radius:14px;font-size:16px;font-weight:700;cursor:pointer;margin-top:8px}
+.note{font-size:11px;color:#555;text-align:center;margin-top:12px}
+</style>
+</head>
+<body>
+<div class="phone">
+
+<!-- PAGE 1: WELCOME - 2 OPTIONS -->
+<div id="page1">
+<div class="top">
+<div class="nav"><div>🛵 Ride Go BD</div><div style="border:1px solid #ffffff99;padding:4px 10px;border-radius:99px;font-size:11px">🌐 বাংলা | English</div></div>
+<h1>আপনার যাত্রা,<br>আমাদের দায়িত্ব</h1>
+<p>নিরাপদ ও নির্ভরযোগ্য রাইড শেয়ারিং</p>
+</div>
+<div class="card">
+<h2>Ride Go BD তে স্বাগতম</h2>
+<div class="sub">আপনার যাত্রা শুরু করুন</div>
+<button class="btn btn-green" onclick="goPage('reg')"><div class="ic bg1">👤+</div><div>নতুন? নিবন্ধন করুন<br><span class="small">নতুন অ্যাকাউন্ট তৈরি করুন</span></div></button>
+<button class="btn btn-white" onclick="goPage('login')"><div class="ic bg2">→</div><div>অ্যাকাউন্ট আছে? <span style="color:#16a34a">লগইন করুন</span><br><span class="small" style="color:#777">ফোন নম্বর দিয়ে ওটিপি লগইন</span></div></button>
+</div>
+</div>
+
+<!-- PAGE 2: REGISTRATION -->
+<div id="pageReg" class="hidden">
+<div class="header"><span class="back" onclick="goPage('home')">←</span><h1>Ride Go BD • ওটিপি-ভিত্তিক নিবন্ধন</h1></div>
+<div class="card2">
+<div class="card-top">নিবন্ধন করুন</div>
+<div class="label-small">নতুন অ্যাকাউন্ট তৈরি করতে তথ্য দিন</div>
+<div class="input-box">📄 <div style="flex:1"><b>নিবন্ধন নম্বর</b><br><input placeholder="নিবন্ধন নম্বর লিখুন"></div></div>
+<div class="input-box">👥 <div style="flex:1"><b>স্পনসর নম্বর</b><br><input placeholder="স্পনসর নম্বর লিখুন"></div></div>
+<button class="btn-otp" onclick="alert('OTP 123456 পাঠানো হলো (ডেমো)')">💬 ওটিপি পাঠান</button>
+<div class="note">ওটিপি আপনার দেওয়া নিবন্ধন নম্বরে<br>এসএমএসের মাধ্যমে পাঠানো হবে</div>
+</div>
+</div>
+
+<!-- PAGE 3: LOGIN -->
+<div id="pageLogin" class="hidden">
+<div class="header"><span class="back" onclick="goPage('home')">←</span><h1>Ride Go BD • ওটিপি-ভিত্তিক লগইন</h1></div>
+<div class="card2">
+<div class="card-top">লগইন করুন</div>
+<div class="label-small">আপনার ফোন নম্বর দিয়ে ওটিপি লগইন করুন</div>
+<div class="input-box">📞 <div style="flex:1"><b>ফোন নম্বর</b><br><input placeholder="+880 1XXXXXXXXX"></div></div>
+<button class="btn-otp" onclick="alert('OTP 123456 পাঠানো হলো (ডেমো)')">🔒 ওটিপি দিয়ে লগইন</button>
+<div class="note">আমরা আপনাকে ৬ সংখ্যার ওটিপি<br>এসএমএসে পাঠাবো</div>
+</div>
+</div>
+
+</div>
+<script>
+function goPage(p){
+document.getElementById('page1').classList.add('hidden');
+document.getElementById('pageReg').classList.add('hidden');
+document.getElementById('pageLogin').classList.add('hidden');
+if(p==='home') document.getElementById('page1').classList.remove('hidden');
+if(p==='reg') document.getElementById('pageReg').classList.remove('hidden');
+if(p==='login') document.getElementById('pageLogin').classList.remove('hidden');
+}
+</script>
 </body>
 </html>
